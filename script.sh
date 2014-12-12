@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "# User list in XML:"
 echo ""
 curl -s 'http://localhost:3000/v1.0/user' | xmllint --format -

@@ -64,7 +64,7 @@ library
 
 flag happstack
   description: Build the happstack executable.
-  default:     False
+  default:     True
   manual:      True
 
 flag wai
@@ -87,17 +87,17 @@ executable rest-example-happstack
   ghc-options:       -Wall
   main-is:           Main.hs
   hs-source-dirs:    happstack
-  if flag(happstack)
-    buildable: True
-    build-depends:
-        base >= 4.6 && < 4.8
-      , happstack-server >= 7.1 && < 7.4
-      , mtl >= 2.0 && < 2.3
-      , rest-core == 0.33.*
-      , rest-example
-      , rest-happstack == 0.2.*
-  else
-    buildable: False
+  --if flag(happstack)
+  --  buildable: True
+  build-depends:
+    base >= 4.6 && < 4.8
+    , happstack-server >= 7.1 && < 7.4
+    , mtl >= 2.0 && < 2.3
+    , rest-core == 0.33.*
+    , rest-example
+    , rest-happstack == 0.2.*
+  --else
+  --  buildable: False
 
 executable rest-example-wai
   default-language:  Haskell2010
