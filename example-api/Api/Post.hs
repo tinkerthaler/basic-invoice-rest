@@ -71,6 +71,12 @@ postFromIdentifier i pv = finder <$> readTVar pv
       ById ident -> F.find ((== ident) . Post.id) . Set.toList
       Latest     -> headMay . sortBy (flip $ comparing Post.createdTime) . Set.toList
 
+{--
+ -- See Tutorial
+get :: Handler (ReaderT Title IO)
+get :: mkIdHandler xmlJsonO $ \_ title -> liftIO readPostFromDb title
+ --}
+
 get :: Handler WithPost
 get = mkIdHandler xmlJsonO $ \_ i -> do
   mpost <- liftIO . atomically . postFromIdentifier i =<< (lift . lift) (asks posts)
