@@ -82,12 +82,12 @@
              }
            ]
 }</pre></div></div><button class="btn open-modal" data-controls-modal="idv7161211752882387972" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create comment</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5586725225166962363"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
-  &lt;xs:element name=&#39;userComment&#39;&gt;
+  &lt;xs:element name=&#39;customerComment&#39;&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
-        &lt;xs:element name=&#39;user&#39;&gt;
+        &lt;xs:element name=&#39;customer&#39;&gt;
           &lt;xs:complexType&gt;
-            &lt;xs:element name=&#39;user&#39;&gt;
+            &lt;xs:element name=&#39;customer&#39;&gt;
               &lt;xs:complexType&gt;
                 &lt;xs:sequence&gt;
                   &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
@@ -101,15 +101,15 @@
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
-&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userComment&gt;
-  &lt;user&gt;
-    &lt;user&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;customerComment&gt;
+  &lt;customer&gt;
+    &lt;customer&gt;
       &lt;name&gt;string&lt;/name&gt;
       &lt;password&gt;string&lt;/password&gt;
-    &lt;/user&gt;
-  &lt;/user&gt;
+    &lt;/customer&gt;
+  &lt;/customer&gt;
   &lt;comment&gt;string&lt;/comment&gt;
-&lt;/userComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+&lt;/customerComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;customer&quot;: { &quot;name&quot;: &quot;value&quot;
           , &quot;password&quot;: &quot;value&quot;
           }
 , &quot;comment&quot;: &quot;value&quot;

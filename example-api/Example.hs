@@ -11,21 +11,21 @@ import qualified Data.Set            as Set
 import ApiTypes (ServerData (..))
 import Type.Comment (Comment (Comment))
 import Type.Invoice (Invoice (Invoice))
-import Type.User (User (User))
+import Type.Customer (Customer (Customer))
 
 -- Set up the server state
 exampleBlog :: IO ServerData
 exampleBlog = ServerData
-          <$> newTVarIO mockUsers
+          <$> newTVarIO mockCustomers
           <*> newTVarIO mockInvoices
           <*> newTVarIO mockComments
 
--- | Prepoulated users
-mockUsers :: Set User
-mockUsers = Set.fromList
-  [ User "adam" "1234"
-  , User "erik" "2345"
-  , User "sebas" "3456"
+-- | Prepoulated customers
+mockCustomers :: Set Customer
+mockCustomers = Set.fromList
+  [ Customer "adam" "1234"
+  , Customer "erik" "2345"
+  , Customer "sebas" "3456"
   ]
 
 -- | Prepopulated posts

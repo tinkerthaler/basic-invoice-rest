@@ -17,10 +17,10 @@ import qualified Rest.Resource as R
 import Api.Invoice (WithInvoice, postFromIdentifier)
 import ApiTypes
 import Type.Comment (Comment (Comment))
-import Type.UserComment (UserComment (UserComment))
+import Type.CustomerComment (CustomerComment (CustomerComment))
 import qualified Type.Comment as Comment
 import qualified Type.Invoice    as Invoice
-import qualified Type.User    as User
+import qualified Type.Customer    as Customer
 
 type Identifier = String
 
@@ -46,7 +46,7 @@ list = mkListing xmlJsonO $ \r -> do
 create :: Handler WithInvoice
 create = mkInputHandler xmlJson $ \ucomm -> do
   postId <- getInvoiceId `orThrow` NotFound
-  comm   <- liftIO $ userCommentToComment ucomm
+  comm   <- liftIO $ customerCommentToComment ucomm
   comms  <- lift . lift $ asks comments
   liftIO . atomically $
     modifyTVar' comms (H.insertWith (<>) postId (Set.singleton comm))
@@ -59,7 +59,7 @@ getInvoiceId = do
         =<< liftIO . atomically . postFromIdentifier postIdent
         =<< (lift . lift) (asks posts)
 
-userCommentToComment :: UserComment -> IO Comment
-userCommentToComment (UserComment u content) = do
+customerCommentToComment :: CustomerComment -> IO Comment
+customerCommentToComment (CustomerComment u content) = do
   t <- getCurrentTime
-  return $ Comment (User.name u) t content
+  return $ Comment (Customer.name u) t content

@@ -18,14 +18,14 @@
         </div>
         <ul>
           <li>
-          <a class="resource-link" href="#post">post</a></li><li><a class="resource-link" href="#post.comment">post/comment</a></li><li><a class="resource-link" href="#test">test</a></li><li><a class="resource-link" href="#test.import">test/import</a></li><li><a class="resource-link" href="#user">user</a>
+          <a class="resource-link" href="#post">post</a></li><li><a class="resource-link" href="#post.comment">post/comment</a></li><li><a class="resource-link" href="#test">test</a></li><li><a class="resource-link" href="#test.import">test/import</a></li><li><a class="resource-link" href="#customer">customer</a>
           </li>
         </ul>
       </div>
       <div class="content">
         
         <br/><br/>  
-        <section><a name="user"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./user">user</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/user<span class="link-block">/name/&lt;string&gt;</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/user</td><td>GET</td><td>List users</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv1699706322886491543"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+        <section><a name="customer"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./customer">customer</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/customer<span class="link-block">/name/&lt;string&gt;</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/customer</td><td>GET</td><td>List customers</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv1699706322886491543"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
   &lt;xs:element name=&#39;list&#39;&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
@@ -33,7 +33,7 @@
         &lt;xs:element name=&#39;count&#39; type=&#39;xs:string&#39;/&gt;
         &lt;xs:element name=&#39;items&#39;&gt;
           &lt;xs:complexType&gt;
-            &lt;xs:element name=&#39;userInfo&#39; minOccurs=0&gt;
+            &lt;xs:element name=&#39;customerInfo&#39; minOccurs=0&gt;
               &lt;xs:complexType&gt;
                 &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
               &lt;/xs:complexType&gt;
@@ -47,17 +47,17 @@
   &lt;offset&gt;string&lt;/offset&gt;
   &lt;count&gt;string&lt;/count&gt;
   &lt;items&gt;
-    &lt;userInfo&gt;
+    &lt;customerInfo&gt;
       &lt;name&gt;string&lt;/name&gt;
-    &lt;/userInfo&gt;
+    &lt;/customerInfo&gt;
   &lt;/items&gt;
 &lt;/list&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3019697110668031891" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv932153196685646688"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;offset&quot;: 0
 , &quot;count&quot;: 0
 , &quot;items&quot;: [ { &quot;name&quot;: &quot;value&quot;
              }
            ]
-}</pre></div></div><button class="btn open-modal" data-controls-modal="idv932153196685646688" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-0 url-main-row"><td>/user/name/&lt;string&gt;</td><td>GET</td><td>Retrieve user data</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-1089348009908552561"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
-  &lt;xs:element name=&#39;user&#39;&gt;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv932153196685646688" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-0 url-main-row"><td>/customer/name/&lt;string&gt;</td><td>GET</td><td>Retrieve customer data</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-1089348009908552561"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;customer&#39;&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
         &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
@@ -65,10 +65,10 @@
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
-&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1089348009908552561" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv5401325706723205571"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;user&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1089348009908552561" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv5401325706723205571"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;customer&gt;
   &lt;name&gt;string&lt;/name&gt;
   &lt;password&gt;string&lt;/password&gt;
-&lt;/user&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv5401325706723205571" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv8422211746458774428"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;name&quot;: &quot;value&quot;
+&lt;/customer&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv5401325706723205571" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv8422211746458774428"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;name&quot;: &quot;value&quot;
 , &quot;password&quot;: &quot;value&quot;
 }</pre></div></div><button class="btn open-modal" data-controls-modal="idv8422211746458774428" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr></tbody></table></section><section><a name="post"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./post">post</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/post<span class="link-block">/id/&lt;integer&gt;<br>/latest</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/post</td><td>GET</td><td>List posts</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5831684343152602584"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
   &lt;xs:element name=&#39;list&#39;&gt;
@@ -116,12 +116,12 @@
              }
            ]
 }</pre></div></div><button class="btn open-modal" data-controls-modal="idv-4894453210332126530" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create post</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv8384191624007046688"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
-  &lt;xs:element name=&#39;userPost&#39;&gt;
+  &lt;xs:element name=&#39;customerPost&#39;&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
-        &lt;xs:element name=&#39;user&#39;&gt;
+        &lt;xs:element name=&#39;customer&#39;&gt;
           &lt;xs:complexType&gt;
-            &lt;xs:element name=&#39;user&#39;&gt;
+            &lt;xs:element name=&#39;customer&#39;&gt;
               &lt;xs:complexType&gt;
                 &lt;xs:sequence&gt;
                   &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
@@ -146,23 +146,23 @@
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
-&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv8384191624007046688" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-2068669224307959119"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userPost&gt;
-  &lt;user&gt;
-    &lt;user&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv8384191624007046688" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-2068669224307959119"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;customerPost&gt;
+  &lt;customer&gt;
+    &lt;customer&gt;
       &lt;name&gt;string&lt;/name&gt;
       &lt;password&gt;string&lt;/password&gt;
-    &lt;/user&gt;
-  &lt;/user&gt;
+    &lt;/customer&gt;
+  &lt;/customer&gt;
   &lt;post&gt;
     &lt;createPost&gt;
       &lt;title&gt;string&lt;/title&gt;
       &lt;content&gt;string&lt;/content&gt;
     &lt;/createPost&gt;
   &lt;/post&gt;
-&lt;/userPost&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-2068669224307959119" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-3659080210065891814"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;post&quot;: { &quot;content&quot;: &quot;value&quot;
+&lt;/customerPost&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-2068669224307959119" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-3659080210065891814"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;post&quot;: { &quot;content&quot;: &quot;value&quot;
           , &quot;title&quot;: &quot;value&quot;
           }
-, &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+, &quot;customer&quot;: { &quot;name&quot;: &quot;value&quot;
           , &quot;password&quot;: &quot;value&quot;
           }
 }</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3659080210065891814" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6006997007001872111"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
@@ -382,12 +382,12 @@
              }
            ]
 }</pre></div></div><button class="btn open-modal" data-controls-modal="idv7161211752882387972" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create comment</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5586725225166962363"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
-  &lt;xs:element name=&#39;userComment&#39;&gt;
+  &lt;xs:element name=&#39;customerComment&#39;&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
-        &lt;xs:element name=&#39;user&#39;&gt;
+        &lt;xs:element name=&#39;customer&#39;&gt;
           &lt;xs:complexType&gt;
-            &lt;xs:element name=&#39;user&#39;&gt;
+            &lt;xs:element name=&#39;customer&#39;&gt;
               &lt;xs:complexType&gt;
                 &lt;xs:sequence&gt;
                   &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
@@ -401,15 +401,15 @@
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
-&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userComment&gt;
-  &lt;user&gt;
-    &lt;user&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;customerComment&gt;
+  &lt;customer&gt;
+    &lt;customer&gt;
       &lt;name&gt;string&lt;/name&gt;
       &lt;password&gt;string&lt;/password&gt;
-    &lt;/user&gt;
-  &lt;/user&gt;
+    &lt;/customer&gt;
+  &lt;/customer&gt;
   &lt;comment&gt;string&lt;/comment&gt;
-&lt;/userComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+&lt;/customerComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;customer&quot;: { &quot;name&quot;: &quot;value&quot;
           , &quot;password&quot;: &quot;value&quot;
           }
 , &quot;comment&quot;: &quot;value&quot;

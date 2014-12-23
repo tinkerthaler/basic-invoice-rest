@@ -1,4 +1,4 @@
-module Api.User (resource) where
+module Api.Customer (resource) where
 
 import Control.Applicative ((<$>))
 import Control.Concurrent.STM (STM, TVar, atomically, modifyTVar, readTVar)
@@ -18,70 +18,70 @@ import Rest.Handler (mkIdHandler)
 import Rest.Schema (singleBy, noListing)
 
 import ApiTypes (BlogApi, ServerData (..))
-import Type.User (User)
-import Type.UserInfo (UserInfo (..))
-import Type.UserSignupError (UserSignupError (..))
-import qualified Type.User     as User
-import qualified Type.UserInfo as UserInfo
+import Type.Customer (Customer)
+import Type.CustomerInfo (CustomerInfo (..))
+import Type.CustomerSignupError (CustomerSignupError (..))
+import qualified Type.Customer     as Customer
+import qualified Type.CustomerInfo as CustomerInfo
 
-data UserId = ByName String
+data CustomerId = ByName String
 
--- | User extends the root of the API with a reader containing the ways to identify a user in our URLs.
--- Currently only by the user name.
---type WithUser = ReaderT User.Name BlogApi
-type WithUser = ReaderT UserId BlogApi
+-- | Customer extends the root of the API with a reader containing the ways to identify a customer in our URLs.
+-- Currently only by the customer name.
+--type WithCustomer = ReaderT Customer.Name BlogApi
+type WithCustomer = ReaderT CustomerId BlogApi
 
 
--- | Defines the /user api end-point.
-resource :: Resource BlogApi WithUser UserId () Void
+-- | Defines the /customer api end-point.
+resource :: Resource BlogApi WithCustomer CustomerId () Void
 resource = mkResourceReader
-  { R.name   = "user" -- Name of the HTTP path segment.
+  { R.name   = "customer" -- Name of the HTTP path segment.
   , R.schema = withListing () $ named [("name", singleBy ByName)]
-  , R.list   = const list -- requested by GET /user, gives a paginated listing of users.
+  , R.list   = const list -- requested by GET /customer, gives a paginated listing of customers.
   , R.get    = Just get
-  --, R.create = Just create -- PUT /user creates a new user
+  --, R.create = Just create -- PUT /customer creates a new customer
   }
 
-get :: Handler WithUser
+get :: Handler WithCustomer
 get = mkIdHandler xmlJsonO $ \_ i -> do
-  muser <- liftIO . atomically . userFromIdentifier i =<< (lift . lift) (asks users)
-  case muser of
+  mcustomer <- liftIO . atomically . customerFromIdentifier i =<< (lift . lift) (asks customers)
+  case mcustomer of
     Nothing -> throwError NotFound
     Just a  -> return a
 
-userFromIdentifier :: UserId -> TVar (Set User) -> STM (Maybe User)
-userFromIdentifier (ByName i) pv = finder <$> readTVar pv
+customerFromIdentifier :: CustomerId -> TVar (Set Customer) -> STM (Maybe Customer)
+customerFromIdentifier (ByName i) pv = finder <$> readTVar pv
   where
---    finder = F.find ((== i) . User.Name) . Set.toList
-    finder = F.find ((== i) . T.unpack . User.name) . Set.toList
+--    finder = F.find ((== i) . Customer.Name) . Set.toList
+    finder = F.find ((== i) . T.unpack . Customer.name) . Set.toList
 
 list :: ListHandler BlogApi
 list = mkListing xmlJsonO $ \r -> do
-  usrs <- liftIO . atomically . readTVar =<< asks users
-  return . map toUserInfo . take (count r) . drop (offset r) . Set.toList $ usrs
+  usrs <- liftIO . atomically . readTVar =<< asks customers
+  return . map toCustomerInfo . take (count r) . drop (offset r) . Set.toList $ usrs
 
--- | Convert a User into a representation that is safe to show to the public.
-toUserInfo :: User -> UserInfo
-toUserInfo u = UserInfo { UserInfo.name = User.name u }
+-- | Convert a Customer into a representation that is safe to show to the public.
+toCustomerInfo :: Customer -> CustomerInfo
+toCustomerInfo u = CustomerInfo { CustomerInfo.name = Customer.name u }
 
 create :: Handler BlogApi
 create = mkInputHandler (xmlJsonE . xmlJsonO . xmlJsonI) $ \usr -> do
-  usrs <- asks users
+  usrs <- asks customers
   merr <- liftIO . atomically $ do
-    vu <- validUserName usr <$> readTVar usrs
+    vu <- validCustomerName usr <$> readTVar usrs
     if not (validPassword usr)
       then return . Just $ domainReason InvalidPassword
       else if not vu
-        then return . Just $ domainReason InvalidUserName
+        then return . Just $ domainReason InvalidCustomerName
         else modifyTVar usrs (Set.insert usr) >> return Nothing
-  maybe (return $ toUserInfo usr) throwError merr
+  maybe (return $ toCustomerInfo usr) throwError merr
 
-validPassword :: User.User -> Bool
-validPassword = (> 1) . T.length . User.password
+validPassword :: Customer.Customer -> Bool
+validPassword = (> 1) . T.length . Customer.password
 
-validUserName :: User -> Set User -> Bool
-validUserName u usrs =
-  let un        = User.name u
-      available = F.all ((un /=). User.name) usrs
+validCustomerName :: Customer -> Set Customer -> Bool
+validCustomerName u usrs =
+  let un        = Customer.name u
+      available = F.all ((un /=). Customer.name) usrs
       nonEmpty  = (> 1) . T.length $ un
   in available && nonEmpty

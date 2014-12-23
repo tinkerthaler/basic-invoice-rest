@@ -1,10 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC-fno-warn-unused-imports#-}
-module Restexample.Client.User where
+module Restexample.Client.Customer where
 import Rest.Client.Internal
 import qualified Rest.Types.Container
-import qualified Type.UserInfo
-import qualified Type.User
+import qualified Type.CustomerInfo
+import qualified Type.Customer
  
 type Identifier = String
  
@@ -15,20 +15,20 @@ list ::
        ApiStateC m =>
        [(String, String)] ->
          m (ApiResponse ()
-              (Rest.Types.Container.List (Type.UserInfo.UserInfo)))
+              (Rest.Types.Container.List (Type.CustomerInfo.CustomerInfo)))
 list pList
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
-        request = makeReq "GET" "v1.0.0" [["user"]] pList rHeaders ""
+        request = makeReq "GET" "v1.0.0" [["customer"]] pList rHeaders ""
       in doRequest fromJSON fromJSON request
  
 byName ::
-         ApiStateC m => String -> m (ApiResponse () Type.User.User)
+         ApiStateC m => String -> m (ApiResponse () Type.Customer.Customer)
 byName string
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "GET" "v1.0.0" [["user"], ["name"], [showUrl string]] []
+          = makeReq "GET" "v1.0.0" [["customer"], ["name"], [showUrl string]] []
               rHeaders
               ""
       in doRequest fromJSON fromJSON request

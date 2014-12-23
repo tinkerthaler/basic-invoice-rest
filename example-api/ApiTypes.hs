@@ -10,11 +10,11 @@ import Data.Set (Set)
 
 import Type.Comment (Comment)
 import Type.Invoice (Invoice)
-import Type.User (User)
+import Type.Customer (Customer)
 import qualified Type.Invoice as Invoice
 
 data ServerData = ServerData
-  { users    :: TVar (Set User)
+  { customers    :: TVar (Set Customer)
   , posts    :: TVar (Set Invoice)
   , comments :: TVar (HashMap Invoice.Id (Set Comment))
   }
