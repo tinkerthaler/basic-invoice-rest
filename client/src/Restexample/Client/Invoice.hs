@@ -23,7 +23,7 @@ list ::
 list pList
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
-        request = makeReq "GET" "v1.0.0" [["post"]] pList rHeaders ""
+        request = makeReq "GET" "v1.0.0" [["invoice"]] pList rHeaders ""
       in doRequest fromJSON fromJSON request
  
 byId :: ApiStateC m => Int -> m (ApiResponse () Type.Invoice.Invoice)
@@ -31,7 +31,7 @@ byId integer
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "GET" "v1.0.0" [["post"], ["id"], [showUrl integer]] []
+          = makeReq "GET" "v1.0.0" [["invoice"], ["id"], [showUrl integer]] []
               rHeaders
               ""
       in doRequest fromJSON fromJSON request
@@ -46,7 +46,7 @@ removeManyId input
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/json")]
         request
-          = makeReq "DELETE" "v1.0.0" [["post"], ["id"]] [] rHeaders
+          = makeReq "DELETE" "v1.0.0" [["invoice"], ["id"]] [] rHeaders
               (toJSON input)
       in doRequest fromJSON fromJSON request
  
@@ -55,7 +55,7 @@ latest
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "GET" "v1.0.0" [["post"], ["latest"]] [] rHeaders ""
+          = makeReq "GET" "v1.0.0" [["invoice"], ["latest"]] [] rHeaders ""
       in doRequest fromJSON fromJSON request
  
 create ::
@@ -66,13 +66,13 @@ create input
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/json")]
         request
-          = makeReq "POST" "v1.0.0" [["post"]] [] rHeaders (toJSON input)
+          = makeReq "POST" "v1.0.0" [["invoice"]] [] rHeaders (toJSON input)
       in doRequest fromJSON fromJSON request
  
 remove :: ApiStateC m => Identifier -> m (ApiResponse () ())
-remove post
+remove invoice
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "DELETE" "v1.0.0" [["post"], readId post] [] rHeaders ""
+          = makeReq "DELETE" "v1.0.0" [["invoice"], readId invoice] [] rHeaders ""
       in doRequest fromJSON (const ()) request

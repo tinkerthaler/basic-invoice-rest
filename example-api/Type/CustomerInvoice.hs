@@ -17,7 +17,7 @@ import Text.XML.HXT.Arrow.Pickle
 import Type.CreateInvoice (CreateInvoice)
 import Type.Customer (Customer)
 
-data CustomerInvoice = CustomerInvoice { customer :: Customer, post :: CreateInvoice }
+data CustomerInvoice = CustomerInvoice { customer :: Customer, invoice :: CreateInvoice }
   deriving (Eq, Generic, Ord, Show, Typeable)
 
 deriveAll ''CustomerInvoice "PFCustomerInvoice"

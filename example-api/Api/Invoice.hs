@@ -3,7 +3,7 @@ module Api.Invoice
   ( Identifier (..)
   , WithInvoice
   , resource
-  , postFromIdentifier
+  , invoiceFromIdentifier
   ) where
 
 import Control.Applicative
@@ -50,22 +50,22 @@ instance ShowUrl Identifier where
   showUrl (ById i) = show i
 
 -- | Invoice extends the root of the API with a reader containing the ways to identify a Invoice in our URLs.
--- Currently only by the title of the post.
+-- Currently only by the title of the invoice.
 type WithInvoice = ReaderT Identifier BlogApi
 
--- | Defines the /post api end-point.
+-- | Defines the /invoice api end-point.
 resource :: Resource BlogApi WithInvoice Identifier () Void
 resource = mkResourceReader
-  { R.name   = "post" -- Name of the HTTP path segment.
+  { R.name   = "invoice" -- Name of the HTTP path segment.
   , R.schema = withListing () $ named [("id", singleRead ById), ("latest", single Latest)]
-  , R.list   = const list -- list is requested by GET /post which gives a listing of posts.
-  , R.create = Just create -- PUT /post to create a new Invoice.
+  , R.list   = const list -- list is requested by GET /invoice which gives a listing of invoices.
+  , R.create = Just create -- PUT /invoice to create a new Invoice.
   , R.get    = Just get
   , R.remove = Just remove
   }
 
-postFromIdentifier :: Identifier -> TVar (Set Invoice) -> STM (Maybe Invoice)
-postFromIdentifier i pv = finder <$> readTVar pv
+invoiceFromIdentifier :: Identifier -> TVar (Set Invoice) -> STM (Maybe Invoice)
+invoiceFromIdentifier i pv = finder <$> readTVar pv
   where
     finder = case i of
       ById ident -> F.find ((== ident) . Invoice.id) . Set.toList
@@ -79,42 +79,42 @@ get :: mkIdHandler xmlJsonO $ \_ title -> liftIO readInvoiceFromDb title
 
 get :: Handler WithInvoice
 get = mkIdHandler xmlJsonO $ \_ i -> do
-  mpost <- liftIO . atomically . postFromIdentifier i =<< (lift . lift) (asks posts)
-  case mpost of
+  minvoice <- liftIO . atomically . invoiceFromIdentifier i =<< (lift . lift) (asks invoices)
+  case minvoice of
     Nothing -> throwError NotFound
     Just a  -> return a
 
--- | List Invoices with the most recent posts first.
+-- | List Invoices with the most recent invoices first.
 list :: ListHandler BlogApi
 list = mkListing xmlJsonO $ \r -> do
-  psts <- liftIO . atomically . readTVar =<< asks posts
+  psts <- liftIO . atomically . readTVar =<< asks invoices
   return . take (count r) . drop (offset r) . sortBy (flip $ comparing Invoice.createdTime) . Set.toList $ psts
 
 create :: Handler BlogApi
 create = mkInputHandler (xmlJsonE . xmlJson) $ \(CustomerInvoice usr pst) -> do
   -- Make sure the credentials are valid
   checkLogin usr
-  pstsVar <- asks posts
+  pstsVar <- asks invoices
   psts <- liftIO . atomically . readTVar $ pstsVar
-  post <- liftIO $ toInvoice (Set.size psts + 1) usr pst
-  -- Validate and save the post in the same transaction.
+  invoice <- liftIO $ toInvoice (Set.size psts + 1) usr pst
+  -- Validate and save the invoice in the same transaction.
   merr <- liftIO . atomically $ do
     let vt = validTitle pst psts
     if not vt
       then return . Just $ domainReason InvalidTitle
       else if not (validContent pst)
         then return . Just $ domainReason InvalidContent
-        else modifyTVar pstsVar (Set.insert post) >> return Nothing
-  maybe (return post) throwError merr
+        else modifyTVar pstsVar (Set.insert invoice) >> return Nothing
+  maybe (return invoice) throwError merr
 
 remove :: Handler WithInvoice
 remove = mkIdHandler id $ \_ i -> do
-  pstsVar <- lift . lift $ asks posts
+  pstsVar <- lift . lift $ asks invoices
   merr <- liftIO . atomically $ do
-    mpost <- postFromIdentifier i pstsVar
-    case mpost of
+    minvoice <- invoiceFromIdentifier i pstsVar
+    case minvoice of
       Nothing -> return . Just $ NotFound
-      Just post -> modifyTVar pstsVar (Set.delete post) >> return Nothing
+      Just invoice -> modifyTVar pstsVar (Set.delete invoice) >> return Nothing
   maybe (return ()) throwError merr
 
 -- | Convert a Customer and CreateInvoice into a Invoice that can be saved.

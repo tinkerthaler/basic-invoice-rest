@@ -15,7 +15,7 @@ import qualified Type.Invoice as Invoice
 
 data ServerData = ServerData
   { customers    :: TVar (Set Customer)
-  , posts    :: TVar (Set Invoice)
+  , invoices    :: TVar (Set Invoice)
   , comments :: TVar (HashMap Invoice.Id (Set Comment))
   }
 
