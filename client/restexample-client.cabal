@@ -10,7 +10,7 @@ library
                    rest-stringmap ==0.2.*
     exposed-modules: Restexample.Client.Invoice
                      Restexample.Client.Invoice.Comment Restexample.Client.Test
-                     Restexample.Client.Test.Import Restexample.Client.User
+                     Restexample.Client.Test.Import Restexample.Client.Customer
     exposed: True
     buildable: True
     hs-source-dirs: src

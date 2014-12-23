@@ -17,10 +17,10 @@ import Generics.Regular.XmlPickler
 import Text.XML.HXT.Arrow.Pickle
 
 import Type.Invoice ()
-import qualified Type.User as User
+import qualified Type.Customer as Customer
 
 data Comment = Comment
-  { author      :: User.Name
+  { author      :: Customer.Name
   , createdTime :: UTCTime
   , content     :: Text
   } deriving (Eq, Generic, Ord, Show, Typeable)

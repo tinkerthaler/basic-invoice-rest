@@ -7,7 +7,7 @@ import qualified Type.Invoice
 import qualified Rest.StringMap.HashMap.Strict
 import qualified Rest.Types.Error
 import qualified Type.InvoiceError
-import qualified Type.UserInvoice
+import qualified Type.CustomerInvoice
  
 data Identifier = Id Int
                 | Latest
@@ -60,7 +60,7 @@ latest
  
 create ::
          ApiStateC m =>
-         Type.UserInvoice.UserInvoice ->
+         Type.CustomerInvoice.CustomerInvoice ->
            m (ApiResponse Type.InvoiceError.InvoiceError Type.Invoice.Invoice)
 create input
   = let rHeaders

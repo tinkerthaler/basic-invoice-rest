@@ -5,7 +5,7 @@ import Rest.Client.Internal
 import qualified Restexample.Client.Invoice as Invoice
 import qualified Rest.Types.Container
 import qualified Type.Comment
-import qualified Type.UserComment
+import qualified Type.CustomerComment
  
 type Identifier = [(Char)]
  
@@ -31,7 +31,7 @@ list post pList
 create ::
          ApiStateC m =>
          Invoice.Identifier ->
-           Type.UserComment.UserComment ->
+           Type.CustomerComment.CustomerComment ->
              m (ApiResponse () Type.Comment.Comment)
 create post input
   = let rHeaders

@@ -4,7 +4,7 @@
   , TemplateHaskell
   , TypeFamilies
   #-}
-module Type.UserSignupError where
+module Type.CustomerSignupError where
 
 import Data.Aeson
 import Data.JSON.Schema
@@ -15,16 +15,16 @@ import Generics.Regular.XmlPickler
 import Rest.Error
 import Text.XML.HXT.Arrow.Pickle
 
-data UserSignupError = InvalidPassword | InvalidUserName
+data CustomerSignupError = InvalidPassword | InvalidCustomerName
   deriving (Eq, Generic, Ord, Show, Typeable)
 
-deriveAll ''UserSignupError "PFUserSignupError"
-type instance PF UserSignupError = PFUserSignupError
+deriveAll ''CustomerSignupError "PFCustomerSignupError"
+type instance PF CustomerSignupError = PFCustomerSignupError
 
-instance XmlPickler UserSignupError where xpickle = gxpickle
-instance JSONSchema UserSignupError where schema = gSchema
-instance FromJSON   UserSignupError
-instance ToJSON     UserSignupError
+instance XmlPickler CustomerSignupError where xpickle = gxpickle
+instance JSONSchema CustomerSignupError where schema = gSchema
+instance FromJSON   CustomerSignupError
+instance ToJSON     CustomerSignupError
 
-instance ToResponseCode UserSignupError where
+instance ToResponseCode CustomerSignupError where
   toResponseCode _ = 400

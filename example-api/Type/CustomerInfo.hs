@@ -4,7 +4,7 @@
   , TemplateHaskell
   , TypeFamilies
   #-}
-module Type.UserInfo where
+module Type.CustomerInfo where
 
 import Data.Aeson
 import Data.JSON.Schema
@@ -14,16 +14,16 @@ import Generics.Regular
 import Generics.Regular.XmlPickler
 import Text.XML.HXT.Arrow.Pickle
 
-import qualified Type.User as User
+import qualified Type.Customer as Customer
 
-data UserInfo = UserInfo
-  { name :: User.Name
+data CustomerInfo = CustomerInfo
+  { name :: Customer.Name
   } deriving (Generic, Show, Typeable)
 
-deriveAll ''UserInfo "PFUserInfo"
-type instance PF UserInfo = PFUserInfo
+deriveAll ''CustomerInfo "PFCustomerInfo"
+type instance PF CustomerInfo = PFCustomerInfo
 
-instance XmlPickler UserInfo where xpickle = gxpickle
-instance JSONSchema UserInfo where schema = gSchema
-instance ToJSON     UserInfo
-instance FromJSON   UserInfo
+instance XmlPickler CustomerInfo where xpickle = gxpickle
+instance JSONSchema CustomerInfo where schema = gSchema
+instance ToJSON     CustomerInfo
+instance FromJSON   CustomerInfo
