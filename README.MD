@@ -14,3 +14,7 @@ in pkgs.myEnvFun {
  ...
  }
 
+## Refactoring
+
+Rename inside files: Emacs projectile (C p r). Very powerful (retains case)
+Rename files: find ./ -name '*User*' | xargs -I {} rename 'User' 'Customer' {}
