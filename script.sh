@@ -1,13 +1,13 @@
 #!/bin/sh
-#echo "# User list in XML:"
+#echo "# Customer list in XML:"
 #echo ""
-#curl -s 'http://localhost:3000/v1.0/user' | xmllint --format -
+#curl -s 'http://localhost:3000/v1.0/customer' | xmllint --format -
 #echo ""
 #echo "-------------"
-echo "# User list in JSON:"
+echo "# Customer list in JSON:"
 echo ""
-echo "curl -s 'http://localhost:3000/v1.0/user?type=json' | python -mjson.tool"
-curl -s 'http://localhost:3000/v1.0/user?type=json' | python -mjson.tool
+echo "curl -s 'http://localhost:3000/v1.0/customer?type=json' | python -mjson.tool"
+curl -s 'http://localhost:3000/v1.0/customer?type=json' | python -mjson.tool
 echo ""
 echo "-------------"
 #echo "# Invoice list in XML:"
@@ -21,18 +21,18 @@ echo ""
 echo "-------------"
 echo "# Creating post:"
 echo ""
-echo "curl -s -X POST 'http://localhost:3000/v1.0/post' -H \"Content-Type:application/json\" -d '{\"user\":{\"name\":\"adam\",\"password\":\"1234\"},\"post\":{\"title\":\"Interesting Blog Invoice\",\"content\":\"I will finish this later\"}}' | python -mjson.tool"
-curl -s -X POST 'http://localhost:3000/v1.0/post' -H "Content-Type:application/json" -d '{"user":{"name":"adam","password":"1234"},"post":{"title":"Interesting Blog Invoice","content":"I will finish this later"}}' | python -mjson.tool
+echo "curl -s -X POST 'http://localhost:3000/v1.0/post' -H \"Content-Type:application/json\" -d '{\"customer\":{\"name\":\"adam\",\"password\":\"1234\"},\"post\":{\"title\":\"Interesting Blog Invoice\",\"content\":\"I will finish this later\"}}' | python -mjson.tool"
+curl -s -X POST 'http://localhost:3000/v1.0/post' -H "Content-Type:application/json" -d '{"customer":{"name":"adam","password":"1234"},"post":{"title":"Interesting Blog Invoice","content":"I will finish this later"}}' | python -mjson.tool
 echo "-------------"
 echo "# Creating post with the same title:"
 echo ""
-echo "curl -s -X POST 'http://localhost:3000/v1.0/post' -H \"Content-Type:application/json\" -d '{\"user\":{\"name\":\"adam\",\"password\":\"1234\"},\"post\":{\"title\":\"Interesting Blog Invoice\",\"content\":\"I will finish this later\"}}' | python -mjson.tool"
-curl -s -X POST 'http://localhost:3000/v1.0/post' -H "Content-Type:application/json" -d '{"user":{"name":"adam","password":"1234"},"post":{"title":"Interesting Blog Invoice","content":"I will finish this later"}}' | python -mjson.tool
+echo "curl -s -X POST 'http://localhost:3000/v1.0/post' -H \"Content-Type:application/json\" -d '{\"customer\":{\"name\":\"adam\",\"password\":\"1234\"},\"post\":{\"title\":\"Interesting Blog Invoice\",\"content\":\"I will finish this later\"}}' | python -mjson.tool"
+curl -s -X POST 'http://localhost:3000/v1.0/post' -H "Content-Type:application/json" -d '{"customer":{"name":"adam","password":"1234"},"post":{"title":"Interesting Blog Invoice","content":"I will finish this later"}}' | python -mjson.tool
 echo "-------------"
 echo "# Commenting on Invoice 0"
 echo ""
-echo "curl -s -X POST 'http://localhost:3000/v1.0/post/id/0/comment' -H \"Content-Type:application/json\" -d '{\"user\":{\"name\":\"adam\",\"password\":\"1234\"},\"comment\":\"I really outdid myself this time!?\"}' | python -mjson.tool"
-curl -s -X POST 'http://localhost:3000/v1.0/post/id/0/comment' -H "Content-Type:application/json" -d '{"user":{"name":"adam","password":"1234"},"comment":"I really outdid myself this time!?"}' | python -mjson.tool
+echo "curl -s -X POST 'http://localhost:3000/v1.0/post/id/0/comment' -H \"Content-Type:application/json\" -d '{\"customer\":{\"name\":\"adam\",\"password\":\"1234\"},\"comment\":\"I really outdid myself this time!?\"}' | python -mjson.tool"
+curl -s -X POST 'http://localhost:3000/v1.0/post/id/0/comment' -H "Content-Type:application/json" -d '{"customer":{"name":"adam","password":"1234"},"comment":"I really outdid myself this time!?"}' | python -mjson.tool
 echo "-------------"
 echo "# Listing a posts comments (Invoice 0)"
 echo ""

@@ -27,8 +27,8 @@ import qualified Rest.Resource as R
 import ApiTypes
 import qualified Api.Test.Err2 as E2
 
--- | User extends the root of the API with a reader containing the ways to identify a user in our URLs.
--- Currently only by the user name.
+-- | Customer extends the root of the API with a reader containing the ways to identify a customer in our URLs.
+-- Currently only by the customer name.
 type WithText = ReaderT Text BlogApi
 
 data Err = Err deriving (Generic, Show, Typeable)

@@ -31,11 +31,11 @@ import ApiTypes
 import Type.CreateInvoice (CreateInvoice)
 import Type.Invoice (Invoice (Invoice))
 import Type.InvoiceError (InvoiceError (..))
-import Type.User (User)
-import Type.UserInvoice (UserInvoice (UserInvoice))
+import Type.Customer (Customer)
+import Type.CustomerInvoice (CustomerInvoice (CustomerInvoice))
 import qualified Type.CreateInvoice as CreateInvoice
 import qualified Type.Invoice       as Invoice
-import qualified Type.User       as User
+import qualified Type.Customer       as Customer
 
 data Identifier
   = Latest
@@ -91,7 +91,7 @@ list = mkListing xmlJsonO $ \r -> do
   return . take (count r) . drop (offset r) . sortBy (flip $ comparing Invoice.createdTime) . Set.toList $ psts
 
 create :: Handler BlogApi
-create = mkInputHandler (xmlJsonE . xmlJson) $ \(UserInvoice usr pst) -> do
+create = mkInputHandler (xmlJsonE . xmlJson) $ \(CustomerInvoice usr pst) -> do
   -- Make sure the credentials are valid
   checkLogin usr
   pstsVar <- asks posts
@@ -117,13 +117,13 @@ remove = mkIdHandler id $ \_ i -> do
       Just post -> modifyTVar pstsVar (Set.delete post) >> return Nothing
   maybe (return ()) throwError merr
 
--- | Convert a User and CreateInvoice into a Invoice that can be saved.
-toInvoice :: Int -> User -> CreateInvoice -> IO Invoice
+-- | Convert a Customer and CreateInvoice into a Invoice that can be saved.
+toInvoice :: Int -> Customer -> CreateInvoice -> IO Invoice
 toInvoice i u p = do
   t <- getCurrentTime
   return Invoice
     { Invoice.id          = i
-    , Invoice.author      = User.name u
+    , Invoice.author      = Customer.name u
     , Invoice.createdTime = t
     , Invoice.title       = CreateInvoice.title p
     , Invoice.content     = CreateInvoice.content p
@@ -141,8 +141,8 @@ validTitle p psts =
 validContent :: CreateInvoice -> Bool
 validContent = (>= 1) . T.length . CreateInvoice.content
 
--- | Throw an error if the user isn't logged in.
-checkLogin :: User -> ErrorT (Reason e) BlogApi ()
+-- | Throw an error if the customer isn't logged in.
+checkLogin :: Customer -> ErrorT (Reason e) BlogApi ()
 checkLogin usr = do
-  usrs <- liftIO . atomically . readTVar =<< asks users
+  usrs <- liftIO . atomically . readTVar =<< asks customers
   unless (usr `F.elem` usrs) $ throwError NotAllowed

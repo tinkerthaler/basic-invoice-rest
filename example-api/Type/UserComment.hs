@@ -4,7 +4,7 @@
   , TemplateHaskell
   , TypeFamilies
   #-}
-module Type.UserComment where
+module Type.CustomerComment where
 
 import Data.Aeson
 import Data.JSON.Schema
@@ -15,17 +15,17 @@ import Generics.Regular
 import Generics.Regular.XmlPickler
 import Text.XML.HXT.Arrow.Pickle
 
-import Type.User (User)
+import Type.Customer (Customer)
 
-data UserComment = UserComment
-  { user    :: User
+data CustomerComment = CustomerComment
+  { customer    :: Customer
   , comment :: Text
   } deriving (Eq, Generic, Ord, Show, Typeable)
 
-deriveAll ''UserComment "PFUserComment"
-type instance PF UserComment = PFUserComment
+deriveAll ''CustomerComment "PFCustomerComment"
+type instance PF CustomerComment = PFCustomerComment
 
-instance XmlPickler UserComment where xpickle = gxpickle
-instance JSONSchema UserComment where schema = gSchema
-instance FromJSON   UserComment
-instance ToJSON     UserComment
+instance XmlPickler CustomerComment where xpickle = gxpickle
+instance JSONSchema CustomerComment where schema = gSchema
+instance FromJSON   CustomerComment
+instance ToJSON     CustomerComment
