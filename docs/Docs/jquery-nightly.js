@@ -49,7 +49,7 @@ var jQuery = function( selector, context ) {
 	// Match a standalone tag
 	rsingleTag = /^<(\w+)\s*\/?>(?:<\/\1>)?$/,
 
-	// Keep a CustomerAgent string for use with jQuery.browser
+	// Keep a UserAgent string for use with jQuery.browser
 	userAgent = navigator.userAgent,
 
 	// For matching the engine and version of the browser
