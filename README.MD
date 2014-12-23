@@ -23,3 +23,4 @@ Rename files: find ./ -name '*User*' | xargs -I {} rename 'User' 'Customer' {}
 
 Git diff staged area
 git diff --cached
+
