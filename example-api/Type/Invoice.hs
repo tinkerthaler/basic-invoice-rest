@@ -17,14 +17,14 @@ import Generics.Regular
 import Generics.Regular.XmlPickler
 import Text.XML.HXT.Arrow.Pickle
 
-import qualified Type.User as User
+import qualified Type.Customer as Customer
 
 type Id = Int
 type Title = Text
 
 data Invoice = Invoice
   { id          :: Id
-  , author      :: User.Name
+  , author      :: Customer.Name
   , createdTime :: UTCTime
   , title       :: Title
   , content     :: Text

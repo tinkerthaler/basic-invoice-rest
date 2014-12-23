@@ -256,25 +256,25 @@ RestexampleApi.prototype.Test.prototype.intersectedFormats2 =
   {
     return RestexampleApi.ajaxCall("POST", this.contextUrl + 'intersectedFormats2/', params, success, error, "text/plain", "json", text, callOpts);
   };
-RestexampleApi.prototype.User =
-  function User (url, secureUrl)
+RestexampleApi.prototype.Customer =
+  function Customer (url, secureUrl)
   {
-    if (this instanceof User)
+    if (this instanceof Customer)
     {
       RestexampleApi.setContext(this, url, secureUrl);
     }
     else
     {
-      return User.access(url, secureUrl);
+      return Customer.access(url, secureUrl);
     }
   };
-RestexampleApi.prototype.User.apiObjectType = "resourceDir";
-RestexampleApi.prototype.User.list =
+RestexampleApi.prototype.Customer.apiObjectType = "resourceDir";
+RestexampleApi.prototype.Customer.list =
   function (success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("GET", this.contextUrl + '', params, success, error, "text/plain", "json", undefined, callOpts);
   };
-RestexampleApi.prototype.User.create =
+RestexampleApi.prototype.Customer.create =
   function (json, success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("POST", this.contextUrl + '', params, success, error, "text/json", "json", JSON.stringify(json), callOpts);

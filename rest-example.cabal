@@ -26,18 +26,18 @@ library
     Api.Test
     Api.Test.Err2
     Api.Test.ReservedName
-    Api.User
+    Api.Customer
     ApiTypes
     Example
     Type.Comment
     Type.CreateInvoice
     Type.Invoice
     Type.InvoiceError
-    Type.User
-    Type.UserComment
-    Type.UserInfo
-    Type.UserInvoice
-    Type.UserSignupError
+    Type.Customer
+    Type.CustomerComment
+    Type.CustomerInfo
+    Type.CustomerInvoice
+    Type.CustomerSignupError
   build-depends:
       base >= 4.6 && < 4.8
     , aeson >= 0.7 && < 0.9
