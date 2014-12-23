@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC-fno-warn-unused-imports#-}
-module Restexample.Client.Post.Comment where
+module Restexample.Client.Invoice.Comment where
 import Rest.Client.Internal
-import qualified Restexample.Client.Post as Post
+import qualified Restexample.Client.Invoice as Invoice
 import qualified Rest.Types.Container
 import qualified Type.Comment
 import qualified Type.UserComment
@@ -14,7 +14,7 @@ readId x = ["id", showUrl x]
  
 list ::
        ApiStateC m =>
-       Post.Identifier ->
+       Invoice.Identifier ->
          [(String, String)] ->
            m (ApiResponse ()
                 (Rest.Types.Container.List (Type.Comment.Comment)))
@@ -22,7 +22,7 @@ list post pList
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "GET" "v1.0.0" [["post"], Post.readId post, ["comment"]]
+          = makeReq "GET" "v1.0.0" [["post"], Invoice.readId post, ["comment"]]
               pList
               rHeaders
               ""
@@ -30,14 +30,14 @@ list post pList
  
 create ::
          ApiStateC m =>
-         Post.Identifier ->
+         Invoice.Identifier ->
            Type.UserComment.UserComment ->
              m (ApiResponse () Type.Comment.Comment)
 create post input
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/json")]
         request
-          = makeReq "POST" "v1.0.0" [["post"], Post.readId post, ["comment"]]
+          = makeReq "POST" "v1.0.0" [["post"], Invoice.readId post, ["comment"]]
               []
               rHeaders
               (toJSON input)

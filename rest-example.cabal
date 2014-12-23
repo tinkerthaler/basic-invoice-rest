@@ -21,8 +21,8 @@ library
   hs-source-dirs:    example-api
   exposed-modules:
     Api
-    Api.Post
-    Api.Post.Comment
+    Api.Invoice
+    Api.Invoice.Comment
     Api.Test
     Api.Test.Err2
     Api.Test.ReservedName
@@ -30,13 +30,13 @@ library
     ApiTypes
     Example
     Type.Comment
-    Type.CreatePost
-    Type.Post
-    Type.PostError
+    Type.CreateInvoice
+    Type.Invoice
+    Type.InvoiceError
     Type.User
     Type.UserComment
     Type.UserInfo
-    Type.UserPost
+    Type.UserInvoice
     Type.UserSignupError
   build-depends:
       base >= 4.6 && < 4.8
@@ -79,7 +79,7 @@ flag snap
 
 flag gen
   description: Build client generation executable.
-  default:     True
+  default:     False
   manual:      True
 
 executable rest-example-happstack
@@ -146,7 +146,7 @@ executable rest-example-gen
         base >= 4.6 && < 4.8
       , mtl >= 2.0 && < 2.3
       , rest-core == 0.33.*
-      , rest-example
       , rest-gen >= 0.14 && < 0.17
+      , rest-client >= 0.4 && < 1.0
   else
     buildable: False

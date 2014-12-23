@@ -11,6 +11,7 @@ in pkgs.myEnvFun {
     (haskellPackages.ghcWithPackagesOld (hs: ([
       hs.cabalInstall
       hs.hscolour
+      hs.hoogle
     ]
     ++ hs.rest-example.propagatedNativeBuildInputs
     )))

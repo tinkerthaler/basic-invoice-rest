@@ -1,0 +1,18 @@
+name: restexample-my-client
+version: 0.1.1
+cabal-version: >=1.8
+build-type:          Simple
+cabal-version:       >=1.10
+license: AllRightsReserved
+ 
+executable restexample-my-client
+    default-language:  Haskell2010
+    ghc-options:       -Wall
+    main-is:           Main.hs
+    hs-source-dirs:    src
+    build-depends: base ==4.*, rest-types ==1.11.*,
+                   rest-client ==0.4.*, text >=0.10 && <1.3, rest-example -any,
+                   rest-stringmap ==0.2.*, restexample-client -any
+
+ 
+ 

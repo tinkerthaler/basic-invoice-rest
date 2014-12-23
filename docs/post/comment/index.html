@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <title>Silk API Documentation version 1.0.0 for post/comment </title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/docs.css">
+    <script type="text/javascript" src="/jquery-nightly.js"></script>
+    <script type="text/javascript" src="/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/prettify.js"></script>
+    <script type="text/javascript" src="/docs.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="sidebar">
+        <p>Silk API 1.0.0</p>
+        <div class="page-header">
+          <h1>Navigation</h1>
+        </div>
+        <h3>Context</h3> <a class="resource-link" href="./post">post</a><span class="parent-separator">></span><a class="resource-link" href="./post/comment">comment</a>
+        <h3>Sub-resources</h3>          
+        <div class="span8">
+          <ul>
+            <li><a class="resource-link" href="./post/comment">post/comment</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="row pageHeader resource-title"> 
+          <div class="span16">
+            <h1>post/comment</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span8">
+            <h2>Description</h2>
+            <p></p>
+          </div>
+          <div class="span8">
+            <h2>Identifiers</h2>
+            <p>/post<span class="link-block"><span class="link-block">/id/&lt;integer&gt;<br>/latest</span></span>/comment<span class="link-block">/id/&lt;string&gt;</span></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span16">
+            <table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/post<span class="link-block"><span class="link-block">/id/&lt;integer&gt;<br>/latest</span></span>/comment</td><td>GET</td><td>List comments</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-7739690608913900664"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;list&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;offset&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;count&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;items&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;comment&#39; minOccurs=0&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7739690608913900664" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv799160481096818073"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;list&gt;
+  &lt;offset&gt;string&lt;/offset&gt;
+  &lt;count&gt;string&lt;/count&gt;
+  &lt;items&gt;
+    &lt;comment&gt;
+      &lt;author&gt;string&lt;/author&gt;
+      &lt;createdTime&gt;string&lt;/createdTime&gt;
+      &lt;content&gt;string&lt;/content&gt;
+    &lt;/comment&gt;
+  &lt;/items&gt;
+&lt;/list&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv799160481096818073" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv7161211752882387972"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;offset&quot;: 0
+, &quot;count&quot;: 0
+, &quot;items&quot;: [ { &quot;createdTime&quot;: &quot;value&quot;
+             , &quot;content&quot;: &quot;value&quot;
+             , &quot;author&quot;: &quot;value&quot;
+             }
+           ]
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv7161211752882387972" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create comment</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5586725225166962363"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;userComment&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;user&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;user&#39;&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;password&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name=&#39;comment&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userComment&gt;
+  &lt;user&gt;
+    &lt;user&gt;
+      &lt;name&gt;string&lt;/name&gt;
+      &lt;password&gt;string&lt;/password&gt;
+    &lt;/user&gt;
+  &lt;/user&gt;
+  &lt;comment&gt;string&lt;/comment&gt;
+&lt;/userComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+          , &quot;password&quot;: &quot;value&quot;
+          }
+, &quot;comment&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8900909339050931219" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv2597607084485227573"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;comment&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv2597607084485227573" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-7556162536574740649"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;comment&gt;
+  &lt;author&gt;string&lt;/author&gt;
+  &lt;createdTime&gt;string&lt;/createdTime&gt;
+  &lt;content&gt;string&lt;/content&gt;
+&lt;/comment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7556162536574740649" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv8199606027513498310"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;createdTime&quot;: &quot;value&quot;
+, &quot;content&quot;: &quot;value&quot;
+, &quot;author&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv8199606027513498310" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr></tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
+</html>

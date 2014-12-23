@@ -4,9 +4,9 @@ module Api where
 import Rest.Api
 
 import ApiTypes (BlogApi)
-import qualified Api.Post              as Post
+import qualified Api.Invoice              as Invoice
 import qualified Api.User              as User
-import qualified Api.Post.Comment      as Post.Comment
+import qualified Api.Invoice.Comment      as Invoice.Comment
 import qualified Api.Test              as Test
 import qualified Api.Test.ReservedName as ReservedName
 
@@ -22,7 +22,7 @@ blog =
        -/ test --/ reservedName
   where
     user         = route User.resource
-    post         = route Post.resource
-    comment      = route Post.Comment.resource
+    post         = route Invoice.resource
+    comment      = route Invoice.Comment.resource
     test         = route Test.resource
     reservedName = route ReservedName.resource
