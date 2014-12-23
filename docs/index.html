@@ -1,0 +1,437 @@
+<html>
+  <head>
+    <title>Silk API Documentation version 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/prettify.css">
+    <link rel="stylesheet" type="text/css" href="/docs.css">
+    <script type="text/javascript" src="/jquery-nightly.js"></script>
+    <script type="text/javascript" src="/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="/prettify.js"></script>
+    <script type="text/javascript" src="/docs.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="sidebar">
+        <p>Silk API 1.0.0</p>
+        <div class="page-header">
+          <h1>Resources</h1>
+        </div>
+        <ul>
+          <li>
+          <a class="resource-link" href="#post">post</a></li><li><a class="resource-link" href="#post.comment">post/comment</a></li><li><a class="resource-link" href="#test">test</a></li><li><a class="resource-link" href="#test.import">test/import</a></li><li><a class="resource-link" href="#user">user</a>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        
+        <br/><br/>  
+        <section><a name="user"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./user">user</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/user<span class="link-block">/name/&lt;string&gt;</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/user</td><td>GET</td><td>List users</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv1699706322886491543"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;list&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;offset&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;count&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;items&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;userInfo&#39; minOccurs=0&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv1699706322886491543" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-3019697110668031891"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;list&gt;
+  &lt;offset&gt;string&lt;/offset&gt;
+  &lt;count&gt;string&lt;/count&gt;
+  &lt;items&gt;
+    &lt;userInfo&gt;
+      &lt;name&gt;string&lt;/name&gt;
+    &lt;/userInfo&gt;
+  &lt;/items&gt;
+&lt;/list&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3019697110668031891" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv932153196685646688"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;offset&quot;: 0
+, &quot;count&quot;: 0
+, &quot;items&quot;: [ { &quot;name&quot;: &quot;value&quot;
+             }
+           ]
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv932153196685646688" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-0 url-main-row"><td>/user/name/&lt;string&gt;</td><td>GET</td><td>Retrieve user data</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-1089348009908552561"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;user&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;password&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1089348009908552561" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv5401325706723205571"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;user&gt;
+  &lt;name&gt;string&lt;/name&gt;
+  &lt;password&gt;string&lt;/password&gt;
+&lt;/user&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv5401325706723205571" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv8422211746458774428"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;name&quot;: &quot;value&quot;
+, &quot;password&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv8422211746458774428" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr></tbody></table></section><section><a name="post"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./post">post</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/post<span class="link-block">/id/&lt;integer&gt;<br>/latest</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/post</td><td>GET</td><td>List posts</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5831684343152602584"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;list&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;offset&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;count&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;items&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;post&#39; minOccurs=0&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;id&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;title&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5831684343152602584" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv6468339023704405599"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;list&gt;
+  &lt;offset&gt;string&lt;/offset&gt;
+  &lt;count&gt;string&lt;/count&gt;
+  &lt;items&gt;
+    &lt;post&gt;
+      &lt;id&gt;string&lt;/id&gt;
+      &lt;author&gt;string&lt;/author&gt;
+      &lt;createdTime&gt;string&lt;/createdTime&gt;
+      &lt;title&gt;string&lt;/title&gt;
+      &lt;content&gt;string&lt;/content&gt;
+    &lt;/post&gt;
+  &lt;/items&gt;
+&lt;/list&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv6468339023704405599" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-4894453210332126530"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;offset&quot;: 0
+, &quot;count&quot;: 0
+, &quot;items&quot;: [ { &quot;createdTime&quot;: &quot;value&quot;
+             , &quot;content&quot;: &quot;value&quot;
+             , &quot;author&quot;: &quot;value&quot;
+             , &quot;id&quot;: 0
+             , &quot;title&quot;: &quot;value&quot;
+             }
+           ]
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-4894453210332126530" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create post</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv8384191624007046688"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;userPost&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;user&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;user&#39;&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;password&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name=&#39;post&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;createPost&#39;&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;title&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv8384191624007046688" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-2068669224307959119"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userPost&gt;
+  &lt;user&gt;
+    &lt;user&gt;
+      &lt;name&gt;string&lt;/name&gt;
+      &lt;password&gt;string&lt;/password&gt;
+    &lt;/user&gt;
+  &lt;/user&gt;
+  &lt;post&gt;
+    &lt;createPost&gt;
+      &lt;title&gt;string&lt;/title&gt;
+      &lt;content&gt;string&lt;/content&gt;
+    &lt;/createPost&gt;
+  &lt;/post&gt;
+&lt;/userPost&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-2068669224307959119" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-3659080210065891814"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;post&quot;: { &quot;content&quot;: &quot;value&quot;
+          , &quot;title&quot;: &quot;value&quot;
+          }
+, &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+          , &quot;password&quot;: &quot;value&quot;
+          }
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3659080210065891814" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6006997007001872111"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;post&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;id&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;title&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6006997007001872111" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-8606760284439607719"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;post&gt;
+  &lt;id&gt;string&lt;/id&gt;
+  &lt;author&gt;string&lt;/author&gt;
+  &lt;createdTime&gt;string&lt;/createdTime&gt;
+  &lt;title&gt;string&lt;/title&gt;
+  &lt;content&gt;string&lt;/content&gt;
+&lt;/post&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8606760284439607719" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv7972502304903333758"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;createdTime&quot;: &quot;value&quot;
+, &quot;content&quot;: &quot;value&quot;
+, &quot;author&quot;: &quot;value&quot;
+, &quot;id&quot;: 0
+, &quot;title&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv7972502304903333758" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-820268084607206417"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:choice&gt;
+    &lt;xs:element name=&#39;invalidTitle&#39;/&gt;
+    &lt;xs:element name=&#39;invalidContent&#39;/&gt;
+  &lt;/xs:choice&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-820268084607206417" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-7039119816181113886"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;invalidTitle/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7039119816181113886" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv1232724664658461263"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;invalidTitle&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv1232724664658461263" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/post/id/&lt;integer&gt;</td><td>GET</td><td>Retrieve post data</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6006997007001872111"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;post&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;id&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;title&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6006997007001872111" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-8606760284439607719"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;post&gt;
+  &lt;id&gt;string&lt;/id&gt;
+  &lt;author&gt;string&lt;/author&gt;
+  &lt;createdTime&gt;string&lt;/createdTime&gt;
+  &lt;title&gt;string&lt;/title&gt;
+  &lt;content&gt;string&lt;/content&gt;
+&lt;/post&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8606760284439607719" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv7972502304903333758"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;createdTime&quot;: &quot;value&quot;
+, &quot;content&quot;: &quot;value&quot;
+, &quot;author&quot;: &quot;value&quot;
+, &quot;id&quot;: 0
+, &quot;title&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv7972502304903333758" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr><tr class="stripe-0 url-data-row"><td></td><td>DELETE</td><td>Delete post</td><td>None</td><td>None</td><td>None</td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/post/id</td><td>DELETE</td><td>Delete many information</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv2275506668673272356"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;map&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:element name=&#39;value&#39; minOccurs=0&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:attribute name=&#39;key&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv2275506668673272356" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv2971681626879781198"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;map&gt;
+  &lt;value&gt;
+  &lt;/value&gt;
+&lt;/map&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv2971681626879781198" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-4868507023898894354"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;&lt;key&gt;&quot;: null
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-4868507023898894354" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6835704969429203371"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;map&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:element name=&#39;value&#39; minOccurs=0&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:sequence&gt;
+            &lt;xs:attribute name=&#39;key&#39; type=&#39;xs:string&#39;/&gt;
+            &lt;xs:choice&gt;
+              &lt;xs:element name=&#39;failure&#39;&gt;
+                &lt;xs:complexType&gt;
+                  &lt;xs:choice&gt;
+                    &lt;xs:element name=&#39;unsupportedRoute&#39;/&gt;
+                    &lt;xs:element name=&#39;unsupportedMethod&#39;/&gt;
+                    &lt;xs:element name=&#39;unsupportedVersion&#39;/&gt;
+                    &lt;xs:element name=&#39;identError&#39;&gt;
+                      &lt;xs:complexType&gt;
+                        &lt;xs:choice&gt;
+                          &lt;xs:element name=&#39;parseError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;printError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;missingField&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;unsupportedFormat&#39; type=&#39;xs:string&#39;/&gt;
+                        &lt;/xs:choice&gt;
+                      &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                    &lt;xs:element name=&#39;headerError&#39;&gt;
+                      &lt;xs:complexType&gt;
+                        &lt;xs:choice&gt;
+                          &lt;xs:element name=&#39;parseError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;printError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;missingField&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;unsupportedFormat&#39; type=&#39;xs:string&#39;/&gt;
+                        &lt;/xs:choice&gt;
+                      &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                    &lt;xs:element name=&#39;paramError&#39;&gt;
+                      &lt;xs:complexType&gt;
+                        &lt;xs:choice&gt;
+                          &lt;xs:element name=&#39;parseError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;printError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;missingField&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;unsupportedFormat&#39; type=&#39;xs:string&#39;/&gt;
+                        &lt;/xs:choice&gt;
+                      &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                    &lt;xs:element name=&#39;inputError&#39;&gt;
+                      &lt;xs:complexType&gt;
+                        &lt;xs:choice&gt;
+                          &lt;xs:element name=&#39;parseError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;printError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;missingField&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;unsupportedFormat&#39; type=&#39;xs:string&#39;/&gt;
+                        &lt;/xs:choice&gt;
+                      &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                    &lt;xs:element name=&#39;outputError&#39;&gt;
+                      &lt;xs:complexType&gt;
+                        &lt;xs:choice&gt;
+                          &lt;xs:element name=&#39;parseError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;printError&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;missingField&#39; type=&#39;xs:string&#39;/&gt;
+                          &lt;xs:element name=&#39;unsupportedFormat&#39; type=&#39;xs:string&#39;/&gt;
+                        &lt;/xs:choice&gt;
+                      &lt;/xs:complexType&gt;
+                    &lt;/xs:element&gt;
+                    &lt;xs:element name=&#39;notFound&#39;/&gt;
+                    &lt;xs:element name=&#39;notAllowed&#39;/&gt;
+                    &lt;xs:element name=&#39;authenticationFailed&#39;/&gt;
+                    &lt;xs:element name=&#39;busy&#39;/&gt;
+                    &lt;xs:element name=&#39;gone&#39;/&gt;
+                    &lt;xs:element name=&#39;customReason&#39;/&gt;
+                  &lt;/xs:choice&gt;
+                &lt;/xs:complexType&gt;
+              &lt;/xs:element&gt;
+              &lt;xs:element name=&#39;success&#39;/&gt;
+            &lt;/xs:choice&gt;
+          &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6835704969429203371" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1159791009242403208"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;map&gt;
+  &lt;value&gt;
+    &lt;failure&gt;
+      &lt;unsupportedRoute/&gt;
+    &lt;/failure&gt;
+  &lt;/value&gt;
+&lt;/map&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1159791009242403208" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8006620260588625467"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;&lt;key&gt;&quot;: { &quot;failure&quot;: { &quot;unsupportedRoute&quot;: { }
+                        }
+           }
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8006620260588625467" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-2578643520546668380"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml"></pre></div></div><button class="btn open-modal" data-controls-modal="idv-2578643520546668380" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-2578643520546668380"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml"></pre></div></div><button class="btn open-modal" data-controls-modal="idv-2578643520546668380" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-6610819358537973325"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">null</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6610819358537973325" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/post/latest</td><td>GET</td><td>Retrieve post data</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6006997007001872111"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;post&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;id&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;title&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6006997007001872111" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-8606760284439607719"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;post&gt;
+  &lt;id&gt;string&lt;/id&gt;
+  &lt;author&gt;string&lt;/author&gt;
+  &lt;createdTime&gt;string&lt;/createdTime&gt;
+  &lt;title&gt;string&lt;/title&gt;
+  &lt;content&gt;string&lt;/content&gt;
+&lt;/post&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8606760284439607719" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv7972502304903333758"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;createdTime&quot;: &quot;value&quot;
+, &quot;content&quot;: &quot;value&quot;
+, &quot;author&quot;: &quot;value&quot;
+, &quot;id&quot;: 0
+, &quot;title&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv7972502304903333758" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr><tr class="stripe-0 url-data-row"><td></td><td>DELETE</td><td>Delete post</td><td>None</td><td>None</td><td>None</td><td>None</td></tr></tbody></table></section><section><a name="post.comment"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./post/comment">post/comment</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/post<span class="link-block"><span class="link-block">/id/&lt;integer&gt;<br>/latest</span></span>/comment<span class="link-block">/id/&lt;string&gt;</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/post<span class="link-block"><span class="link-block">/id/&lt;integer&gt;<br>/latest</span></span>/comment</td><td>GET</td><td>List comments</td><td>None</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-7739690608913900664"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;list&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;offset&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;count&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;items&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;comment&#39; minOccurs=0&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7739690608913900664" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv799160481096818073"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;list&gt;
+  &lt;offset&gt;string&lt;/offset&gt;
+  &lt;count&gt;string&lt;/count&gt;
+  &lt;items&gt;
+    &lt;comment&gt;
+      &lt;author&gt;string&lt;/author&gt;
+      &lt;createdTime&gt;string&lt;/createdTime&gt;
+      &lt;content&gt;string&lt;/content&gt;
+    &lt;/comment&gt;
+  &lt;/items&gt;
+&lt;/list&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv799160481096818073" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv7161211752882387972"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;offset&quot;: 0
+, &quot;count&quot;: 0
+, &quot;items&quot;: [ { &quot;createdTime&quot;: &quot;value&quot;
+             , &quot;content&quot;: &quot;value&quot;
+             , &quot;author&quot;: &quot;value&quot;
+             }
+           ]
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv7161211752882387972" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>offset, count</td></tr><tr class="stripe-1 url-data-row"><td></td><td>POST</td><td>Create comment</td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5586725225166962363"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;userComment&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;user&#39;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:element name=&#39;user&#39;&gt;
+              &lt;xs:complexType&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&#39;name&#39; type=&#39;xs:string&#39;/&gt;
+                  &lt;xs:element name=&#39;password&#39; type=&#39;xs:string&#39;/&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+        &lt;xs:element name=&#39;comment&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5586725225166962363" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-1604907973216938507"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;userComment&gt;
+  &lt;user&gt;
+    &lt;user&gt;
+      &lt;name&gt;string&lt;/name&gt;
+      &lt;password&gt;string&lt;/password&gt;
+    &lt;/user&gt;
+  &lt;/user&gt;
+  &lt;comment&gt;string&lt;/comment&gt;
+&lt;/userComment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-1604907973216938507" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-8900909339050931219"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;user&quot;: { &quot;name&quot;: &quot;value&quot;
+          , &quot;password&quot;: &quot;value&quot;
+          }
+, &quot;comment&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv-8900909339050931219" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv2597607084485227573"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;complexType name=&#39;data&#39;&gt;
+  &lt;xs:element name=&#39;comment&#39;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&#39;author&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;createdTime&#39; type=&#39;xs:string&#39;/&gt;
+        &lt;xs:element name=&#39;content&#39; type=&#39;xs:string&#39;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/complexType&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv2597607084485227573" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv-7556162536574740649"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;comment&gt;
+  &lt;author&gt;string&lt;/author&gt;
+  &lt;createdTime&gt;string&lt;/createdTime&gt;
+  &lt;content&gt;string&lt;/content&gt;
+&lt;/comment&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7556162536574740649" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv8199606027513498310"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">{ &quot;createdTime&quot;: &quot;value&quot;
+, &quot;content&quot;: &quot;value&quot;
+, &quot;author&quot;: &quot;value&quot;
+}</pre></div></div><button class="btn open-modal" data-controls-modal="idv8199606027513498310" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr></tbody></table></section><section><a name="test"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./test">test</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/test</p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/test/noResponse</td><td>POST</td><td>Modify information</td><td>None</td><td>None</td><td>None</td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test/onlyError</td><td>POST</td><td>Modify information</td><td>None</td><td>None</td><td><table class="data-description"><tr><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-7541959204479196065"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;err&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7541959204479196065" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/test/differentFormats</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td></tr><tr><td><div class="modal hide fade code" id="idv-6927812695968817192"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;ok&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6927812695968817192" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv6169994295909994553"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;ok/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv6169994295909994553" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-7541959204479196065"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;err&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7541959204479196065" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test/intersectedFormats</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6927812695968817192"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;ok&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6927812695968817192" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv6169994295909994553"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;ok/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv6169994295909994553" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-5811290189571277090"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;ok&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5811290189571277090" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-7541959204479196065"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;err&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7541959204479196065" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/test/intersectedFormats2</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6927812695968817192"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;ok&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6927812695968817192" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv6169994295909994553"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;ok/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv6169994295909994553" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-5811290189571277090"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;ok&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5811290189571277090" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td></tr><tr><td><div class="modal hide fade code" id="idv-3209142370730245255"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;err&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3209142370730245255" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv4625386032577631166"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;err/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv4625386032577631166" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test/errorImport</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td></tr><tr><td><div class="modal hide fade code" id="idv-3209142370730245255"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;err&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3209142370730245255" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv4625386032577631166"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;err/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv4625386032577631166" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/test/noError</td><td>POST</td><td>Modify information</td><td>None</td><td><table class="data-description"><tr><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-5811290189571277090"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;ok&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5811290189571277090" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test/justStringO</td><td>POST</td><td>Modify information</td><td>None</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td>None</td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/test/preferJson</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>String</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6927812695968817192"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;ok&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6927812695968817192" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv6169994295909994553"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;ok/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv6169994295909994553" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-5811290189571277090"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;ok&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-5811290189571277090" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-3209142370730245255"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;err&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3209142370730245255" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv4625386032577631166"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;err/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv4625386032577631166" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-7541959204479196065"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;err&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7541959204479196065" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test/octetStreamOut</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>File</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>File</td></tr><tr><td></td></tr></table></td><td><table class="data-description"><tr><td>XML</td><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-3209142370730245255"><div class="modal-header"><a href="#" class="close">x</a><h3>Schema</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;xs:element name=&#39;err&#39;/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-3209142370730245255" data-backdrop="true" data-keyboard="true">Schema</button><div class="modal hide fade code" id="idv4625386032577631166"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-xml">&lt;err/&gt;</pre></div></div><button class="btn open-modal" data-controls-modal="idv4625386032577631166" data-backdrop="true" data-keyboard="true">Example</button></td><td><div class="modal hide fade code" id="idv-7541959204479196065"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">&quot;err&quot;</pre></div></div><button class="btn open-modal" data-controls-modal="idv-7541959204479196065" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td></tr><tr class="stripe-1 url-main-row"><td>/test/onlyInput</td><td>POST</td><td>Modify information</td><td><table class="data-description"><tr><td>JSON</td></tr><tr><td><div class="modal hide fade code" id="idv-6610819358537973325"><div class="modal-header"><a href="#" class="close">x</a><h3>Example</h3></div><div class="modal-body"><pre class="prettyprint lang-js">null</pre></div></div><button class="btn open-modal" data-controls-modal="idv-6610819358537973325" data-backdrop="true" data-keyboard="true">Example</button></td></tr></table></td><td>None</td><td>None</td><td>None</td></tr></tbody></table></section><section><a name="test.import"></a><div class="row"><div class="span16 page-header resource-title"><h1><a class="resource-link" href="./test/import">test/import</a></h1></div></div><div class="row"><div class="span10"><h2>Description</h2><p></p></div><div class="span6"><h2>Identifiers</h2><p>/test<span class="link-block"></span>/import<span class="link-block">/it/&lt;string&gt;</span></p></div></div><br><table class="bordered-table resource-table"><thead><th class="URL">URL</th><th class="Method">Method</th><th class="Description">Description</th><th class="Input">Input</th><th class="Output">Output</th><th class="Errors">Errors</th><th class="Parameters">Parameters</th></thead><tbody><tr class="stripe-1 url-main-row"><td>/test<span class="link-block"></span>/import/it/&lt;string&gt;</td><td>GET</td><td>Retrieve import data</td><td>None</td><td>None</td><td>None</td><td>None</td></tr><tr class="stripe-0 url-main-row"><td>/test<span class="link-block"></span>/import<span class="link-block">/it/&lt;string&gt;</span>/do</td><td>POST</td><td>Modify information</td><td>None</td><td>None</td><td>None</td><td>None</td></tr></tbody></table></section>
+      </div>
+    </div>
+  </body>
+</html>

@@ -4,7 +4,7 @@
   , TemplateHaskell
   , TypeFamilies
   #-}
-module Type.CreatePost where
+module Type.CreateInvoice where
 
 import Data.Aeson
 import Data.JSON.Schema
@@ -17,15 +17,15 @@ import Text.XML.HXT.Arrow.Pickle
 
 type Title = Text
 
-data CreatePost = CreatePost
+data CreateInvoice = CreateInvoice
   { title   :: Title
   , content :: Text
   } deriving (Eq, Generic, Ord, Show, Typeable)
 
-deriveAll ''CreatePost "PFCreatePost"
-type instance PF CreatePost = PFCreatePost
+deriveAll ''CreateInvoice "PFCreateInvoice"
+type instance PF CreateInvoice = PFCreateInvoice
 
-instance XmlPickler CreatePost where xpickle = gxpickle
-instance JSONSchema CreatePost where schema = gSchema
-instance FromJSON   CreatePost
-instance ToJSON     CreatePost
+instance XmlPickler CreateInvoice where xpickle = gxpickle
+instance JSONSchema CreateInvoice where schema = gSchema
+instance FromJSON   CreateInvoice
+instance ToJSON     CreateInvoice

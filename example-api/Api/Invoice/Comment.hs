@@ -1,5 +1,5 @@
 {-# LANGUAGE ScopedTypeVariables #-}
-module Api.Post.Comment (resource) where
+module Api.Invoice.Comment (resource) where
 
 import Control.Concurrent.STM (atomically, modifyTVar', readTVar)
 import Control.Monad.Reader
@@ -14,48 +14,48 @@ import qualified Data.Set            as Set
 import Rest
 import qualified Rest.Resource as R
 
-import Api.Post (WithPost, postFromIdentifier)
+import Api.Invoice (WithInvoice, postFromIdentifier)
 import ApiTypes
 import Type.Comment (Comment (Comment))
 import Type.UserComment (UserComment (UserComment))
 import qualified Type.Comment as Comment
-import qualified Type.Post    as Post
+import qualified Type.Invoice    as Invoice
 import qualified Type.User    as User
 
 type Identifier = String
 
-type WithComment = ReaderT Identifier WithPost
+type WithComment = ReaderT Identifier WithInvoice
 
-resource :: Resource WithPost WithComment Identifier () Void
+resource :: Resource WithInvoice WithComment Identifier () Void
 resource = mkResourceReader
   { R.name   = "comment"
   , R.schema = withListing () $ named [("id", singleRead id)]
   , R.list   = const list
-  , R.create = Just create -- PUT /post to create a new Post.
+  , R.create = Just create -- PUT /post to create a new Invoice.
   }
 
-list :: ListHandler WithPost
+list :: ListHandler WithInvoice
 list = mkListing xmlJsonO $ \r -> do
-  postId <- getPostId `orThrow` NotFound
+  postId <- getInvoiceId `orThrow` NotFound
   comms <- liftIO . atomically . readTVar
        =<< (lift . lift) (asks comments)
   return . take (count r) . drop (offset r)
          . sortBy (flip $ comparing Comment.createdTime)
          . maybe [] Set.toList . H.lookup postId $ comms
 
-create :: Handler WithPost
+create :: Handler WithInvoice
 create = mkInputHandler xmlJson $ \ucomm -> do
-  postId <- getPostId `orThrow` NotFound
+  postId <- getInvoiceId `orThrow` NotFound
   comm   <- liftIO $ userCommentToComment ucomm
   comms  <- lift . lift $ asks comments
   liftIO . atomically $
     modifyTVar' comms (H.insertWith (<>) postId (Set.singleton comm))
   return comm
 
-getPostId :: ErrorT (Reason ()) WithPost (Maybe Post.Id)
-getPostId = do
+getInvoiceId :: ErrorT (Reason ()) WithInvoice (Maybe Invoice.Id)
+getInvoiceId = do
   postIdent <- ask
-  return . fmap Post.id
+  return . fmap Invoice.id
         =<< liftIO . atomically . postFromIdentifier postIdent
         =<< (lift . lift) (asks posts)
 

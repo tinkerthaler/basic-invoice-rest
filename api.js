@@ -143,20 +143,20 @@ RestexampleApi.setContext =
       }
     }
   };RestexampleApi.prototype.version = "1.0.0";
-RestexampleApi.prototype.Post =
-  function Post (url, secureUrl)
+RestexampleApi.prototype.Invoice =
+  function Invoice (url, secureUrl)
   {
-    if (this instanceof Post)
+    if (this instanceof Invoice)
     {
       RestexampleApi.setContext(this, url, secureUrl);
     }
     else
     {
-      return Post.access(url, secureUrl);
+      return Invoice.access(url, secureUrl);
     }
   };
-RestexampleApi.prototype.Post.apiObjectType = "resourceDir";
-RestexampleApi.prototype.Post.byId =
+RestexampleApi.prototype.Invoice.apiObjectType = "resourceDir";
+RestexampleApi.prototype.Invoice.byId =
   function (integer)
   {
     var postfix = 'id/' + encodeURIComponent(integer) + '/';
@@ -168,7 +168,7 @@ RestexampleApi.prototype.Post.byId =
       };
     return accessor;
   };
-RestexampleApi.prototype.Post.latest =
+RestexampleApi.prototype.Invoice.latest =
   function ()
   {
     var postfix = 'latest/';
@@ -180,27 +180,27 @@ RestexampleApi.prototype.Post.latest =
       };
     return accessor;
   };
-RestexampleApi.prototype.Post.list =
+RestexampleApi.prototype.Invoice.list =
   function (success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("GET", this.contextUrl + '', params, success, error, "text/plain", "json", undefined, callOpts);
   };
-RestexampleApi.prototype.Post.removeManyById =
+RestexampleApi.prototype.Invoice.removeManyById =
   function (json, success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("DELETE", this.contextUrl + 'id/', params, success, error, "text/json", "json", JSON.stringify(json), callOpts);
   };
-RestexampleApi.prototype.Post.create =
+RestexampleApi.prototype.Invoice.create =
   function (json, success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("POST", this.contextUrl + '', params, success, error, "text/json", "json", JSON.stringify(json), callOpts);
   };
-RestexampleApi.prototype.Post.prototype.remove =
+RestexampleApi.prototype.Invoice.prototype.remove =
   function (success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("DELETE", this.contextUrl + '', params, success, error, "text/plain", "text", undefined, callOpts);
   };
-RestexampleApi.prototype.Post.prototype.Comment =
+RestexampleApi.prototype.Invoice.prototype.Comment =
   function Comment (url, secureUrl)
   {
     if (this instanceof Comment)
@@ -212,13 +212,13 @@ RestexampleApi.prototype.Post.prototype.Comment =
       return Comment.access(url, secureUrl);
     }
   };
-RestexampleApi.prototype.Post.prototype.Comment.apiObjectType = "resourceDir";
-RestexampleApi.prototype.Post.prototype.Comment.list =
+RestexampleApi.prototype.Invoice.prototype.Comment.apiObjectType = "resourceDir";
+RestexampleApi.prototype.Invoice.prototype.Comment.list =
   function (success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("GET", this.contextUrl + '', params, success, error, "text/plain", "json", undefined, callOpts);
   };
-RestexampleApi.prototype.Post.prototype.Comment.create =
+RestexampleApi.prototype.Invoice.prototype.Comment.create =
   function (json, success, error, params, callOpts)
   {
     return RestexampleApi.ajaxCall("POST", this.contextUrl + '', params, success, error, "text/json", "json", JSON.stringify(json), callOpts);

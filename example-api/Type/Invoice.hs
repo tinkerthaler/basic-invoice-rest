@@ -5,7 +5,7 @@
   , TemplateHaskell
   , TypeFamilies
   #-}
-module Type.Post where
+module Type.Invoice where
 
 import Data.Aeson
 import Data.JSON.Schema
@@ -22,7 +22,7 @@ import qualified Type.User as User
 type Id = Int
 type Title = Text
 
-data Post = Post
+data Invoice = Invoice
   { id          :: Id
   , author      :: User.Name
   , createdTime :: UTCTime
@@ -30,12 +30,12 @@ data Post = Post
   , content     :: Text
   } deriving (Eq, Generic, Ord, Show, Typeable)
 
-deriveAll ''Post "PFPost"
-type instance PF Post = PFPost
+deriveAll ''Invoice "PFInvoice"
+type instance PF Invoice = PFInvoice
 
-instance XmlPickler Post where xpickle = gxpickle
-instance JSONSchema Post where schema = gSchema
-instance ToJSON     Post
-instance FromJSON   Post
+instance XmlPickler Invoice where xpickle = gxpickle
+instance JSONSchema Invoice where schema = gSchema
+instance ToJSON     Invoice
+instance FromJSON   Invoice
 
 instance XmlPickler UTCTime where xpickle = xpPrim

@@ -9,14 +9,14 @@ import Data.HashMap.Strict (HashMap)
 import Data.Set (Set)
 
 import Type.Comment (Comment)
-import Type.Post (Post)
+import Type.Invoice (Invoice)
 import Type.User (User)
-import qualified Type.Post as Post
+import qualified Type.Invoice as Invoice
 
 data ServerData = ServerData
   { users    :: TVar (Set User)
-  , posts    :: TVar (Set Post)
-  , comments :: TVar (HashMap Post.Id (Set Comment))
+  , posts    :: TVar (Set Invoice)
+  , comments :: TVar (HashMap Invoice.Id (Set Comment))
   }
 
 newtype BlogApi a = BlogApi { unBlogApi :: ReaderT ServerData IO a }

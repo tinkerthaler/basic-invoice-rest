@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveDataTypeable #-}
-module Api.Post
+module Api.Invoice
   ( Identifier (..)
-  , WithPost
+  , WithInvoice
   , resource
   , postFromIdentifier
   ) where
@@ -28,13 +28,13 @@ import Rest.ShowUrl
 import qualified Rest.Resource as R
 
 import ApiTypes
-import Type.CreatePost (CreatePost)
-import Type.Post (Post (Post))
-import Type.PostError (PostError (..))
+import Type.CreateInvoice (CreateInvoice)
+import Type.Invoice (Invoice (Invoice))
+import Type.InvoiceError (InvoiceError (..))
 import Type.User (User)
-import Type.UserPost (UserPost (UserPost))
-import qualified Type.CreatePost as CreatePost
-import qualified Type.Post       as Post
+import Type.UserInvoice (UserInvoice (UserInvoice))
+import qualified Type.CreateInvoice as CreateInvoice
+import qualified Type.Invoice       as Invoice
 import qualified Type.User       as User
 
 data Identifier
@@ -49,54 +49,54 @@ instance ShowUrl Identifier where
   showUrl Latest = "latest"
   showUrl (ById i) = show i
 
--- | Post extends the root of the API with a reader containing the ways to identify a Post in our URLs.
+-- | Invoice extends the root of the API with a reader containing the ways to identify a Invoice in our URLs.
 -- Currently only by the title of the post.
-type WithPost = ReaderT Identifier BlogApi
+type WithInvoice = ReaderT Identifier BlogApi
 
 -- | Defines the /post api end-point.
-resource :: Resource BlogApi WithPost Identifier () Void
+resource :: Resource BlogApi WithInvoice Identifier () Void
 resource = mkResourceReader
   { R.name   = "post" -- Name of the HTTP path segment.
   , R.schema = withListing () $ named [("id", singleRead ById), ("latest", single Latest)]
   , R.list   = const list -- list is requested by GET /post which gives a listing of posts.
-  , R.create = Just create -- PUT /post to create a new Post.
+  , R.create = Just create -- PUT /post to create a new Invoice.
   , R.get    = Just get
   , R.remove = Just remove
   }
 
-postFromIdentifier :: Identifier -> TVar (Set Post) -> STM (Maybe Post)
+postFromIdentifier :: Identifier -> TVar (Set Invoice) -> STM (Maybe Invoice)
 postFromIdentifier i pv = finder <$> readTVar pv
   where
     finder = case i of
-      ById ident -> F.find ((== ident) . Post.id) . Set.toList
-      Latest     -> headMay . sortBy (flip $ comparing Post.createdTime) . Set.toList
+      ById ident -> F.find ((== ident) . Invoice.id) . Set.toList
+      Latest     -> headMay . sortBy (flip $ comparing Invoice.createdTime) . Set.toList
 
 {--
  -- See Tutorial
 get :: Handler (ReaderT Title IO)
-get :: mkIdHandler xmlJsonO $ \_ title -> liftIO readPostFromDb title
+get :: mkIdHandler xmlJsonO $ \_ title -> liftIO readInvoiceFromDb title
  --}
 
-get :: Handler WithPost
+get :: Handler WithInvoice
 get = mkIdHandler xmlJsonO $ \_ i -> do
   mpost <- liftIO . atomically . postFromIdentifier i =<< (lift . lift) (asks posts)
   case mpost of
     Nothing -> throwError NotFound
     Just a  -> return a
 
--- | List Posts with the most recent posts first.
+-- | List Invoices with the most recent posts first.
 list :: ListHandler BlogApi
 list = mkListing xmlJsonO $ \r -> do
   psts <- liftIO . atomically . readTVar =<< asks posts
-  return . take (count r) . drop (offset r) . sortBy (flip $ comparing Post.createdTime) . Set.toList $ psts
+  return . take (count r) . drop (offset r) . sortBy (flip $ comparing Invoice.createdTime) . Set.toList $ psts
 
 create :: Handler BlogApi
-create = mkInputHandler (xmlJsonE . xmlJson) $ \(UserPost usr pst) -> do
+create = mkInputHandler (xmlJsonE . xmlJson) $ \(UserInvoice usr pst) -> do
   -- Make sure the credentials are valid
   checkLogin usr
   pstsVar <- asks posts
   psts <- liftIO . atomically . readTVar $ pstsVar
-  post <- liftIO $ toPost (Set.size psts + 1) usr pst
+  post <- liftIO $ toInvoice (Set.size psts + 1) usr pst
   -- Validate and save the post in the same transaction.
   merr <- liftIO . atomically $ do
     let vt = validTitle pst psts
@@ -107,7 +107,7 @@ create = mkInputHandler (xmlJsonE . xmlJson) $ \(UserPost usr pst) -> do
         else modifyTVar pstsVar (Set.insert post) >> return Nothing
   maybe (return post) throwError merr
 
-remove :: Handler WithPost
+remove :: Handler WithInvoice
 remove = mkIdHandler id $ \_ i -> do
   pstsVar <- lift . lift $ asks posts
   merr <- liftIO . atomically $ do
@@ -117,29 +117,29 @@ remove = mkIdHandler id $ \_ i -> do
       Just post -> modifyTVar pstsVar (Set.delete post) >> return Nothing
   maybe (return ()) throwError merr
 
--- | Convert a User and CreatePost into a Post that can be saved.
-toPost :: Int -> User -> CreatePost -> IO Post
-toPost i u p = do
+-- | Convert a User and CreateInvoice into a Invoice that can be saved.
+toInvoice :: Int -> User -> CreateInvoice -> IO Invoice
+toInvoice i u p = do
   t <- getCurrentTime
-  return Post
-    { Post.id          = i
-    , Post.author      = User.name u
-    , Post.createdTime = t
-    , Post.title       = CreatePost.title p
-    , Post.content     = CreatePost.content p
+  return Invoice
+    { Invoice.id          = i
+    , Invoice.author      = User.name u
+    , Invoice.createdTime = t
+    , Invoice.title       = CreateInvoice.title p
+    , Invoice.content     = CreateInvoice.content p
     }
 
--- | A Post's title must be unique and non-empty.
-validTitle :: CreatePost -> Set Post -> Bool
+-- | A Invoice's title must be unique and non-empty.
+validTitle :: CreateInvoice -> Set Invoice -> Bool
 validTitle p psts =
-  let pt        = CreatePost.title p
+  let pt        = CreateInvoice.title p
       nonEmpty  = (>= 1) . T.length $ pt
-      available = F.all ((pt /=) . Post.title) psts
+      available = F.all ((pt /=) . Invoice.title) psts
   in available && nonEmpty
 
--- | A Post's content must be non-empty.
-validContent :: CreatePost -> Bool
-validContent = (>= 1) . T.length . CreatePost.content
+-- | A Invoice's content must be non-empty.
+validContent :: CreateInvoice -> Bool
+validContent = (>= 1) . T.length . CreateInvoice.content
 
 -- | Throw an error if the user isn't logged in.
 checkLogin :: User -> ErrorT (Reason e) BlogApi ()

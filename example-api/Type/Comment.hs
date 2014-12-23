@@ -16,7 +16,7 @@ import Generics.Regular
 import Generics.Regular.XmlPickler
 import Text.XML.HXT.Arrow.Pickle
 
-import Type.Post ()
+import Type.Invoice ()
 import qualified Type.User as User
 
 data Comment = Comment

@@ -4,11 +4,9 @@ module Restexample.Client.User where
 import Rest.Client.Internal
 import qualified Rest.Types.Container
 import qualified Type.UserInfo
-import qualified Type.UserSignupError
 import qualified Type.User
-import qualified Data.Text
  
-type Identifier = Data.Text.Text
+type Identifier = String
  
 readId :: Identifier -> [String]
 readId x = ["name", showUrl x]
@@ -24,14 +22,13 @@ list pList
         request = makeReq "GET" "v1.0.0" [["user"]] pList rHeaders ""
       in doRequest fromJSON fromJSON request
  
-create ::
-         ApiStateC m =>
-         Type.User.User ->
-           m (ApiResponse Type.UserSignupError.UserSignupError
-                Type.UserInfo.UserInfo)
-create input
+byName ::
+         ApiStateC m => String -> m (ApiResponse () Type.User.User)
+byName string
   = let rHeaders
-          = [(hAccept, "text/json"), (hContentType, "text/json")]
+          = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "POST" "v1.0.0" [["user"]] [] rHeaders (toJSON input)
+          = makeReq "GET" "v1.0.0" [["user"], ["name"], [showUrl string]] []
+              rHeaders
+              ""
       in doRequest fromJSON fromJSON request

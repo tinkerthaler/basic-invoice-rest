@@ -2,8 +2,8 @@
 
 { cabal, aeson, filepath, genericAeson, happstackServer, hxt
 , jsonSchema, monadControl, mtl, regular, regularXmlpickler
-, restCore, restGen, restHappstack, safe, stm, text, time
-, transformers, transformersBase, unorderedContainers
+, restClient, restCore, restGen, restHappstack, safe, stm, text
+, time, transformers, transformersBase, unorderedContainers
 }:
 
 cabal.mkDerivation (self: {
@@ -14,9 +14,9 @@ cabal.mkDerivation (self: {
   isExecutable = true;
   buildDepends = [
     aeson filepath genericAeson happstackServer hxt jsonSchema
-    monadControl mtl regular regularXmlpickler restCore restGen
-    restHappstack safe stm text time transformers transformersBase
-    unorderedContainers
+    monadControl mtl regular regularXmlpickler restClient restCore
+    restGen restHappstack safe stm text time transformers
+    transformersBase unorderedContainers
   ];
   meta = {
     homepage = "http://www.github.com/silkapp/rest";

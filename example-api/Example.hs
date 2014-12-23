@@ -10,14 +10,14 @@ import qualified Data.Set            as Set
 
 import ApiTypes (ServerData (..))
 import Type.Comment (Comment (Comment))
-import Type.Post (Post (Post))
+import Type.Invoice (Invoice (Invoice))
 import Type.User (User (User))
 
 -- Set up the server state
 exampleBlog :: IO ServerData
 exampleBlog = ServerData
           <$> newTVarIO mockUsers
-          <*> newTVarIO mockPosts
+          <*> newTVarIO mockInvoices
           <*> newTVarIO mockComments
 
 -- | Prepoulated users
@@ -29,10 +29,10 @@ mockUsers = Set.fromList
   ]
 
 -- | Prepopulated posts
-mockPosts :: Set Post
-mockPosts = Set.fromList
-  [ Post 0 "adam" (read "2014-03-31 15:34:00") "First post" "Hello world!"
-  , Post 1 "erik" (read "2014-04-01 13:37:00") "Rest is awesome" "Just wanted to tell the world!"
+mockInvoices :: Set Invoice
+mockInvoices = Set.fromList
+  [ Invoice 0 "adam" (read "2014-03-31 15:34:00") "First post" "Hello world!"
+  , Invoice 1 "erik" (read "2014-04-01 13:37:00") "Rest is awesome" "Just wanted to tell the world!"
   ]
 
 mockComments :: HashMap Int (Set Comment)
