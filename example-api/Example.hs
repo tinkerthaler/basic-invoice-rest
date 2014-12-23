@@ -28,13 +28,13 @@ mockCustomers = Set.fromList
   , Customer "sebas" "3456"
   ]
 
--- | Prepopulated posts
+-- | Prepopulated invoices
 mockInvoices :: Set Invoice
 mockInvoices = Set.fromList
-  [ Invoice 0 "adam" (read "2014-03-31 15:34:00") "First post" "Hello world!"
+  [ Invoice 0 "adam" (read "2014-03-31 15:34:00") "First invoice" "Hello world!"
   , Invoice 1 "erik" (read "2014-04-01 13:37:00") "Rest is awesome" "Just wanted to tell the world!"
   ]
 
 mockComments :: HashMap Int (Set Comment)
 mockComments = H.fromList
-  [(0, Set.fromList [Comment "adam" (read "2014-06-08 14:00:00") "This is the best post I've ever written, please be gentle"])]
+  [(0, Set.fromList [Comment "adam" (read "2014-06-08 14:00:00") "This is the best invoice I've ever written, please be gentle"])]

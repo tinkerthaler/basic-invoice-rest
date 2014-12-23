@@ -18,11 +18,11 @@ list ::
          [(String, String)] ->
            m (ApiResponse ()
                 (Rest.Types.Container.List (Type.Comment.Comment)))
-list post pList
+list invoice pList
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/plain")]
         request
-          = makeReq "GET" "v1.0.0" [["post"], Invoice.readId post, ["comment"]]
+          = makeReq "GET" "v1.0.0" [["invoice"], Invoice.readId invoice, ["comment"]]
               pList
               rHeaders
               ""
@@ -33,11 +33,11 @@ create ::
          Invoice.Identifier ->
            Type.CustomerComment.CustomerComment ->
              m (ApiResponse () Type.Comment.Comment)
-create post input
+create invoice input
   = let rHeaders
           = [(hAccept, "text/json"), (hContentType, "text/json")]
         request
-          = makeReq "POST" "v1.0.0" [["post"], Invoice.readId post, ["comment"]]
+          = makeReq "POST" "v1.0.0" [["invoice"], Invoice.readId invoice, ["comment"]]
               []
               rHeaders
               (toJSON input)

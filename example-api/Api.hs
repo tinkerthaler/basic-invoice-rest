@@ -18,11 +18,11 @@ api = [(mkVersion 1 0 0, Some1 blog)]
 blog :: Router BlogApi BlogApi
 blog =
   root -/ customer
-       -/ post --/ comment
+       -/ invoice --/ comment
        -/ test --/ reservedName
   where
     customer         = route Customer.resource
-    post         = route Invoice.resource
+    invoice         = route Invoice.resource
     comment      = route Invoice.Comment.resource
     test         = route Test.resource
     reservedName = route ReservedName.resource

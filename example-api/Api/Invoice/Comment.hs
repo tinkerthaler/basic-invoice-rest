@@ -14,7 +14,7 @@ import qualified Data.Set            as Set
 import Rest
 import qualified Rest.Resource as R
 
-import Api.Invoice (WithInvoice, postFromIdentifier)
+import Api.Invoice (WithInvoice, invoiceFromIdentifier)
 import ApiTypes
 import Type.Comment (Comment (Comment))
 import Type.CustomerComment (CustomerComment (CustomerComment))
@@ -31,33 +31,33 @@ resource = mkResourceReader
   { R.name   = "comment"
   , R.schema = withListing () $ named [("id", singleRead id)]
   , R.list   = const list
-  , R.create = Just create -- PUT /post to create a new Invoice.
+  , R.create = Just create -- PUT /invoice to create a new Invoice.
   }
 
 list :: ListHandler WithInvoice
 list = mkListing xmlJsonO $ \r -> do
-  postId <- getInvoiceId `orThrow` NotFound
+  invoiceId <- getInvoiceId `orThrow` NotFound
   comms <- liftIO . atomically . readTVar
        =<< (lift . lift) (asks comments)
   return . take (count r) . drop (offset r)
          . sortBy (flip $ comparing Comment.createdTime)
-         . maybe [] Set.toList . H.lookup postId $ comms
+         . maybe [] Set.toList . H.lookup invoiceId $ comms
 
 create :: Handler WithInvoice
 create = mkInputHandler xmlJson $ \ucomm -> do
-  postId <- getInvoiceId `orThrow` NotFound
+  invoiceId <- getInvoiceId `orThrow` NotFound
   comm   <- liftIO $ customerCommentToComment ucomm
   comms  <- lift . lift $ asks comments
   liftIO . atomically $
-    modifyTVar' comms (H.insertWith (<>) postId (Set.singleton comm))
+    modifyTVar' comms (H.insertWith (<>) invoiceId (Set.singleton comm))
   return comm
 
 getInvoiceId :: ErrorT (Reason ()) WithInvoice (Maybe Invoice.Id)
 getInvoiceId = do
-  postIdent <- ask
+  invoiceIdent <- ask
   return . fmap Invoice.id
-        =<< liftIO . atomically . postFromIdentifier postIdent
-        =<< (lift . lift) (asks posts)
+        =<< liftIO . atomically . invoiceFromIdentifier invoiceIdent
+        =<< (lift . lift) (asks invoices)
 
 customerCommentToComment :: CustomerComment -> IO Comment
 customerCommentToComment (CustomerComment u content) = do
