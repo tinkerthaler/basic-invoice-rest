@@ -23,3 +23,15 @@ Rename files: find ./ -name '*User*' | xargs -I {} rename 'User' 'Customer' {}
 
 Git diff staged area
 git diff --cached
+
+## Codeship build
+### Setup
+cabal update
+cabal install cabal-install
+cabal --version
+cabal install --only-dependencies
+cabal configure && cabal build && cabal install
+
+### Test
+cabal run rest-example-happstack &
+#./script.sh
